@@ -1,10 +1,9 @@
+<%= stylesheet_link_tag "style", :media => "all" %>
 <!DOCTYPE html>
-
-
 <html>
-  <head>
-    <%= render "layouts/title" %>
-  </head>
+
+  <%= render "layouts/title" %>
+
 
   <body>
 
@@ -13,18 +12,19 @@
     </header>
 
     <div id="main">
-      <p><%= image_tag("main-img.jpg", alt: "main")%></p>
+      <p><%= image_tag("main-img.jpg", alt: "main") %></p>
     </div>
 
     <div id="article_wrap">
       <%= yield %>
+      <div id="sidebar">
+        <%= render "layouts/sidebar" %>
+      </div>
+      <div class="clear"></div>
+      </div>
+      <%= debug(params) if Rails.env.development? %>
     </div>
 
-    <div id="sidebar">
-      <%= render "layouts/sidebar" %>
-    </div>
-    <div class="clear"></div>
-    </div>
 
     <footer>
       <%= render 'layouts/footer' %>

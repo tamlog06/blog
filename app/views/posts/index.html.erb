@@ -2,17 +2,22 @@
 <%= link_to 'Add new', new_post_path, class: 'header-menu'%>
 </h2>
 
-<div id="article_list">
-    <div>
+<div id="article_wrap">
+    <div id="article_list">
         <% @posts.each do |post| %>
-            <h2><%= link_to post.title, post_path(post) %></h2>
-            <%= link_to '[Edit]', edit_post_path(post), class: 'command'%>
-            <%= link_to '[x]', 
-                post_path(post), 
-                method: :delete, 
-                class: 'command',
-                data: {confirm: 'Sure?'}
-            %>
+            <div>
+                <h2><%= link_to post.title, post_path(post) %></h2>
+                <p>aaa</p>
+                <% if logged_in? %>
+                    <%= link_to '[Edit]', edit_post_path(post), class: 'command'%>
+                    <%= link_to '[x]', 
+                        post_path(post), 
+                        method: :delete, 
+                        class: 'command',
+                        data: {confirm: 'Sure?'}
+                    %>
+                <% end %>
+            </div>
         <% end %>
     </div>
 </div>

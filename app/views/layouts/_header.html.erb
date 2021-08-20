@@ -1,9 +1,17 @@
-<p id="logo"><a href="">RailsCamp<span>Blog</span></a></p>
+<head>
+
+<p id="logo"><a href="/">RailsCamp<span>Blog</span></a></p>
 <nav>
     <ul>
-        <li>ログイン</li>
-        <li>新規投稿</li>
+        <li><%= link_to 'トップ', '#' %></li>
+        <li><%= link_to '新規登録', '#' %></li>
+        <% if logged_in? %>
+            <li><%= link_to 'ログアウト', '#' %></li>
+        <% else %>
+            <li><%= link_to 'ログイン', '#' %></li>
+        <% end %>
         <div class="clear"></div>
     </ul>
 </nav>
 <div class="clear"></div>
+</head>
