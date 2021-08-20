@@ -10,12 +10,11 @@
                 <p>aaa</p>
                 <% if logged_in? %>
                     <%= link_to '[Edit]', edit_post_path(post), class: 'command'%>
-                    <%= link_to '[x]', 
+                    <%= link_to '[Delete]',
                         post_path(post), 
-                        method: :delete, 
+                        method: :delete,
                         class: 'command',
-                        data: {confirm: 'Sure?'}
-                    %>
+                        data: { confirm: 'Sure??'} %>
                 <% end %>
             </div>
         <% end %>
