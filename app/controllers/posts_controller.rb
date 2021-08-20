@@ -55,8 +55,14 @@ class PostsController < ApplicationController
 
     def destroy
         @post = Post.find(params[:id])
-        @post.destroy
-        redirect_to posts_path
+        unless @post[:user_id] == current_user[:id]
+            # flash.now[:danger] = "#{@post[:user_id]}, #{current_user[:id]}"
+            redirect_to(root_url)
+            flash[:danger] = 'This is not your post'
+        else
+            @post.destroy
+            redirect_to posts_path
+        end
     end
 
     private
