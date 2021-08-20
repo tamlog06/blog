@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+
+<html>
+  <head>
+    <%= render "layouts/title" %>
+  </head>
+
+  <body>
+
+    <header>
+      <%= render "layouts/header" %>
+    </header>
+
+    <div id="main">
+      <p><%= image_tag("main-img.jpg", alt: "main")%></p>
+    </div>
+
+    <div id="article_wrap">
+      <%= yield %>
+    </div>
+
+    <div id="sidebar">
+      <%= render "layouts/sidebar" %>
+    </div>
+    <div class="clear"></div>
+    </div>
+
+    <footer>
+      <%= render 'layouts/footer' %>
+    </footer>
+
+
+  </body>
+</html>
