@@ -4,7 +4,6 @@
 
   <%= render "layouts/title" %>
 
-
   <body>
 
     <header>
@@ -14,7 +13,12 @@
     <div id="main">
       <p><%= image_tag("main-img.jpg", alt: "main") %></p>
     </div>
-
+    
+    <div class="container">
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
+    </div>
     <div id="article_wrap">
       <%= yield %>
       <div id="sidebar">

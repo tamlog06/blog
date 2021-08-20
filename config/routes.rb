@@ -4,11 +4,12 @@ Rails.application.routes.draw do
   resources :posts do
     resources :comments, only: [:create, :destroy]
   end
-
+  get 'sessions/new'
+  get 'users/new'
   root 'posts#index'
-  get '/sign_up', to: 'sessions#new'
-  get '/login', to: 'sessions#log_in'
+  get '/sign_up', to: 'users#new'
+  get '/login', to: 'users#log_in'
   # post '/login', to: 'sessions#log_in'
-  delete '/logout', to: 'sessions#destroy'
+  delete '/logout', to: 'users#destroy'
   resources :users
 end
