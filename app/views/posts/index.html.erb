@@ -9,8 +9,8 @@
                 <h2><%= link_to post.title, post_path(post) %></h2>
                 <p>aaa</p>
                 <% if logged_in? %>
-                    <%= link_to '[Edit]', edit_post_path(post), class: 'command'%>
-                    <%= link_to '[Delete]',
+                    <%= link_to '編集', edit_post_path(post), class: 'command'%>
+                    <%= link_to '削除',
                         post_path(post), 
                         method: :delete,
                         class: 'command',
