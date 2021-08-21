@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'redis/index'
   resources :posts do
     resources :comments, only: [:create, :destroy]
   end
@@ -12,4 +13,6 @@ Rails.application.routes.draw do
   post '/login', to: 'sessions#create'
   delete '/logout', to: 'sessions#destroy'
   resources :users
+
+  get "redis", to: "redis#index"
 end

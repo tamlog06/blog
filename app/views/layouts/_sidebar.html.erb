@@ -1,6 +1,6 @@
 <h2>★PV数ランキング</h2>
 <ul>
-    <li><a href="">記事タイトル記事タイトル１記事タイトル記事タイトル<span>（10PV）</span></a></li>
-    <li><a href="">記事タイトル記事タイトル１記事タイトル記事タイトル<span>（8PV）</span></a></li>
-    <li><a href="">記事タイトル記事タイトル１記事タイトル記事タイトル<span>（2PV）</span></a></li>
+    <% @ranking_posts.each do |post| %>
+    <li><%= link_to post.title, post_path(post) %><span> (<%= REDIS.zscore("ranking", post.id).to_i %>PV) </span></li>
+    <% end %>
 </ul>

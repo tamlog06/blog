@@ -2,10 +2,18 @@ class PostsController < ApplicationController
 
     def index
         @posts = Post.all.order(created_at: 'desc')
+        ids = REDIS.zrevrangebyscore "ranking", "+inf", 0, limit: [0, 3]
+        @ranking_posts = ids.map{ |id| Post.find(id) }
+        # debugger
+        if @ranking_posts.count < 3
+            adding_posts = Post.order(published_at: :DESC, updated_at: :DESC).where.not(id: ids).limit(3 - @ranking_posts.count)
+            @ranking_posts.concat(adding_posts)
+        end
     end
 
     def show
         @post = Post.find(params[:id])
+        REDIS.zincrby "ranking", 1, @post.id
     end
 
     def new
@@ -14,12 +22,6 @@ class PostsController < ApplicationController
     end
 
     def create
-        # データの表示
-        # render plain: params[:post].inspect
-
-        # save
-        # @post = Post.new(params[:post])
-        # params[:user_id] = current_user[:id]
         # 送信されたデータが post をキーにして title と body があるハッシュかどうかを確認
         @post = Post.new(post_params)
         @post[:user_id] = current_user[:id]

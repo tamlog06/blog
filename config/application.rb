@@ -32,3 +32,11 @@ module TimeFormatSandbox
     config.i18n.default_locale = :ja
   end
 end
+
+module RailsTest
+  class Application < Rails::Application
+    config.load_defaults 6.1
+    # 追加
+    config.cache_store = :redis_store, "redis://localhost:6379/0/cache", { expires_in: 90.minutes }
+  end
+end
